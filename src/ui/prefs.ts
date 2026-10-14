@@ -5,7 +5,7 @@ export const SPEEDS = [0.7, 0.85, 1] as const;
 export interface Prefs {
   guidance: GuidanceMode;
   calibrationMs: number;
-  /** Chart id; undefined = the song's first chart. */
+  /** Chart id; undefined = not picked yet, so the app's default applies. */
   chartId?: string;
   /** Tempo multiplier for synthetic songs. */
   speed: number;
