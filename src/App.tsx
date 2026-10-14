@@ -7,6 +7,8 @@ import { FONTS } from './ui/palette';
 import { loadPrefs, savePrefs } from './ui/prefs';
 
 const MANIFEST_URL = `${import.meta.env.BASE_URL}songs/neon-tide/manifest.json`;
+/** Mode for players who haven't picked one. A song without it falls back to its first chart. */
+const DEFAULT_CHART_ID = 'one-sentence';
 
 type Phase =
   | { kind: 'loading'; done: number; total: number }
@@ -15,7 +17,7 @@ type Phase =
 
 export function App() {
   const [setup, setSetup] = useState<Setup>(() => {
-    const { chartId, speed } = loadPrefs();
+    const { chartId = DEFAULT_CHART_ID, speed } = loadPrefs();
     return { chartId, speed };
   });
   const [audio, setAudio] = useState<AudioEngine | null>(null);

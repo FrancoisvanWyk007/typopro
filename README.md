@@ -2,7 +2,7 @@
 
 A browser proof of concept for a rhythm-controlled typing music game. A song plays continuously and the vocals play on their own. Each half of the keyboard drives one instrument: play the left-hand keys well and the bass comes up in the mix, play the right-hand keys well and the keys come up. Miss, and they fade toward silence.
 
-Two modes, chosen on the start card:
+Two modes, chosen on the start card (**One sentence** is the default):
 
 - **Two lanes**: each hand types its own word sequence at the same time ("brave waves…" on the left, "jolly moon…" on the right). This is harder, because both run at once.
 - **One sentence**: one ordinary sentence typed in order, one letter per beat, never two keys at once. Each letter's side of the keyboard decides which instrument it plays. There are no falling keys: the sentence scrolls through a text cursor, and each letter reaches the cursor on its beat, so you read words ahead and type them in time. Cleanly typed words light up and are counted as "clean words".

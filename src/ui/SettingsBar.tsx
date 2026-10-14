@@ -1,5 +1,5 @@
 import type { GuidanceMode } from '../guidance/GuidanceController';
-import type { BiasView } from '../game/GameSession';
+import { CALIBRATION_RANGE_MS, type BiasView } from '../game/GameSession';
 import { HANDS } from '../rhythm/types';
 import { useGame, useHud } from './GameContext';
 import { savePrefs } from './prefs';
@@ -68,16 +68,24 @@ export function SettingsBar() {
           Calibration
         </span>
         <div className="stepper" role="group" aria-labelledby="calibration-label">
-          <button aria-label="Decrease calibration by 5 ms" onClick={(e) => (e.currentTarget.blur(), setCalibration(hud.calibrationMs - 5))}>
+          <button
+            aria-label="Decrease calibration by 5 ms"
+            disabled={hud.calibrationMs <= -CALIBRATION_RANGE_MS}
+            onClick={(e) => (e.currentTarget.blur(), setCalibration(hud.calibrationMs - 5))}
+          >
             −
           </button>
           <output className="mono">{signed(hud.calibrationMs)}</output>
-          <button aria-label="Increase calibration by 5 ms" onClick={(e) => (e.currentTarget.blur(), setCalibration(hud.calibrationMs + 5))}>
+          <button
+            aria-label="Increase calibration by 5 ms"
+            disabled={hud.calibrationMs >= CALIBRATION_RANGE_MS}
+            onClick={(e) => (e.currentTarget.blur(), setCalibration(hud.calibrationMs + 5))}
+          >
             +
           </button>
         </div>
         <button
-          className="link"
+          className="btn small"
           disabled={!canCalibrate}
           title="Shift the game clock by your measured timing"
           onClick={(e) => (e.currentTarget.blur(), calibrateFromBias())}
